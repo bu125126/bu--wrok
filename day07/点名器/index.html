@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        li {
+            width: 100px;
+            height: 50px;
+            background-color: red;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            margin: 10px;
+            float: left;
+        }
+
+        .dian {
+            margin: 100px;
+            width: 100px;
+            height: 50px;
+        }
+
+        .ting {
+            margin: 100px;
+            width: 100px;
+            height: 50px;
+        }
+
+        .a {
+            background-color: yellow;
+            color: black;
+        }
+
+        .b {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>321</li>
+        <li>李白</li>
+        <li>qwe</li>
+        <li>rra</li>
+        <li>asd</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>34</li>
+        <li>qwe</li>
+        <li>rra</li>
+        <li>asd</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+        <li>321</li>
+    </ul>
+    <button class="dian">点击</button>
+    <button class="dian2">点击2</button>
+</body>
+
+</html>
+<script>
+    function sj(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+    var dian = document.querySelector('.dian')
+    var dian2 = document.querySelector('.dian2')
+    var li = document.querySelectorAll('li')
+    var a = document.querySelectorAll('.a')
+    var b = document.querySelectorAll('.b')
+
+    var timer
+    dian.onclick = function () {
+        for (var i = 0; i < li.length; i++) {
+            li[i].className = ''
+        }
+        timer = setTimeout(() => {
+            var shu = sj(1, 24)
+            li[shu].className = "a"
+        }, 300);
+    }
+
+    dian2.onclick = function () {
+        for (var i = 0; i < li.length; i++) {
+            li[i].className = ''
+        }
+        timer = setTimeout(() => {
+            var shu1 = [sj(1, 24), sj(1, 24)]
+            li[shu1[0]].className = "a"
+            li[shu1[1]].className = "a"
+        }, 1000);
+    }
+</script>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(90deg, #ffafbd, #ffc3a0);
+        }
+
+        .a1 {
+            width: 450px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            position: absolute;
+            margin-left: -225px;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+        }
+
+        .top {
+            width: 100%;
+            height: 130px;
+            display: flex;
+        }
+
+        .tu1 {
+            width: 80px;
+            height: 80px;
+            margin-left: 120px;
+            margin-top: 30px;
+        }
+
+        .zi1 {
+            width: 120px;
+            height: 40px;
+            background-color: orangered;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            border-radius: 15px;
+            margin-top: 50px;
+            margin-left: 20px;
+        }
+
+        .a2 {
+            width: 100%;
+            height: 30px;
+            font-size: 18px;
+            font-family: '篆书';
+            text-align: center;
+        }
+
+        .a3 {
+            width: 100%;
+            height: 70px;
+            padding-top: 20px;
+            box-sizing: border-box;
+        }
+
+        .wen {
+            width: 270px;
+            height: 30px;
+            border: none;
+            border-bottom: 3px dashed orange;
+            text-decoration: none;
+            margin-left: 30px;
+            outline: none;
+        }
+
+        .btn {
+            width: 100px;
+            height: 40px;
+            background-color: #fff;
+            border: 2px solid #494a4b;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            width: 300px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-family: '黑体';
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="a1">
+        <div class="top">
+            <img src="https://www.todolist.cn/img/note.75134fb0.svg" alt="" class="tu1">
+            <div class="zi1"><i>To-Do List</i></div>
+        </div>
+        <div class="a2">
+            <div class="zi2">~ Today I need to ~</div>
+        </div>
+        <div class="a3">
+            <input type="text" class="wen" placeholder="Add new todo...">
+            <button class="btn">submit</button>
+        </div>
+        <ul>
+        <!-- <li>
+           <div> 
+            <input type="checkbox">
+            <span>123</span>
+           </div>
+            <a href="#">X</a>
+        </li> -->
+        </ul>
+    </div>
+
+    <!-- 
+        添加思路
+        1. 获取页面标签信息 
+        2. 判断点击是否为回车键
+        3. 判断内容不能为空 
+        4. 创建一个li标签，通过innerHTML将内容显示到页面上
+        5. 最后清空文本框
+     -->
+    <!-- 
+        删除思路
+        1. 通过事件委托将删除添加给父元素 通过父元素去删除
+        2. 判断当前是否点击的是del
+        3. 通过removerChild 删除当前父元素
+      -->
+</body>
+
+</html>
+<script>
+    var wen = document.querySelector('.wen')
+    var btn = document.querySelector('.btn')
+    var ul = document.querySelector('ul')
+
+    //文本框点击回车
+    wen.focus()
+    wen.onkeyup = function (e) {
+        if (e.keyCode == 13) {
+            if (wen.value.trim() == "") {
+                alert('内容不能为空')
+            } else {
+                var li = document.createElement('li')
+                li.innerHTML = `
+                <div>
+                <input type="checkbox" class="checked">
+                <span>${wen.value}</span>    
+                </div>
+                <a href="#" class="del">X</a>
+                `
+                ul.appendChild(li)
+                wen.value = ""
+            }
+        }
+    }
+    btn.onclick = function () {
+        if (wen.value.trim() == '') {
+            alert('内容不能为空')
+        } else {
+            var li = document.createElement('li')
+            li.innerHTML = `
+            <div> 
+            <input type="checkbox">
+            <span>${wen.value}</span>
+            </div>
+            <a href="#" class="del">X</a>
+            `
+            ul.appendChild(li)
+            wen.value = ""
+        }
+    }
+    //事件委托  删除
+    ul.addEventListener('click', function (e) {
+        if (e.target.className == "del") {
+            ul.removeChild(e.target.parentNode)
+        }
+    })
+</script>
